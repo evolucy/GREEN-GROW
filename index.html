@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GREEN GROW - Growing Together, Globally</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+        }
+        .brand-gradient {
+            background: linear-gradient(135deg, #0A8754 0%, #0D9488 50%, #2563EB 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .reward-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Privacy Policy Styles */
+        .privacy-root {
+            --bg: #f6fff7;
+            --card: #ffffff;
+            --accent: #0ea45b;
+            --muted: #5b6b59;
+            --dark: #04281a;
+            --glass: rgba(255,255,255,0.7);
+            --radius: 12px;
+            --max: 980px;
+        }
+        .privacy-wrap {
+            max-width: var(--max);
+            margin: 36px auto;
+            padding: 20px;
+        }
+        .privacy-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 22px;
+            box-shadow: 0 10px 30px rgba(2,10,5,0.04);
+        }
+        
+        /* Terms & Conditions Styles */
+        .terms-header {
+            background: #0c7c3a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .terms-main {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Page Management */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-gray-800 cursor-pointer" onclick="showPage('home')">GREEN <span class="text-green-600">GROW</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#global-pool" class="text-gray-600 hover:text-green-600 transition" onclick="showPage('home')">Global Pool</a>
+                    <a href="#leaderboard" class="text-gray-600 hover:text-green-600 transition" onclick="showPage('home')">Leaderboard</a>
+                    <a href="#rewards" class="text-gray-600 hover:text-green-600 transition" onclick="showPage('home')">Rewards</a>
+                    <a href="#products" class="text-gray-600 hover:text-green-600 transition" onclick="showPage('home')">Products</a>
+                </div>
+                <div class="flex items-center">
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition">
+                        Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <!-- Hero Section -->
+        <section class="relative py-20 md:py-32 overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500"></div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="text-center" data-aos="fade-up">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-4 brand-gradient">GREEN GROW</h1>
+                    <p class="text-xl md:text-2xl text-gray-600 mb-8" data-aos="fade-up" data-aos-delay="100">Growing Together, Globally</p>
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg text-lg font-medium transition transform hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+                        Explore Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Global Pool Section -->
+        <section id="global-pool" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Global Performance Metrics</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Global Pool Card -->
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-xl shadow-sm border border-gray-100" data-aos="fade-right">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-lg bg-green-100 mr-4">
+                                <i data-feather="globe" class="text-green-600"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-700">Global Pool</h3>
+                        </div>
+                        <div class="flex items-end">
+                            <span class="text-4xl font-bold text-gray-800" id="globalPoolCounter">0</span>
+                            <span class="text-lg text-gray-500 ml-2">INR</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Total Points Card -->
+                    <div class="bg-gradient-to-r from-blue-50 to-teal-50 p-6 rounded-xl shadow-sm border border-gray-100" data-aos="fade-left">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-lg bg-blue-100 mr-4">
+                                <i data-feather="award" class="text-blue-600"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-700">Total Points</h3>
+                        </div>
+                        <div class="flex items-end">
+                            <span class="text-4xl font-bold text-gray-800" id="totalPointsCounter">0</span>
+                            <span class="text-lg text-gray-500 ml-2">Points</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Target Board -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 max-w-2xl mx-auto" data-aos="fade-up">
+                    <h3 class="text-xl font-semibold text-center text-gray-700 mb-6">Target Progress (2000)</h3>
+                    <div class="flex flex-col items-center">
+                        <div class="relative w-64 h-64 mb-6">
+                            <canvas id="progressChart"></canvas>
+                            <div class="absolute inset-0 flex items-center justify-center flex-col">
+                                <span class="text-3xl font-bold text-gray-800" id="progressPercentage">0%</span>
+                                <span class="text-lg text-gray-600 mt-2" id="progressText">0/2000 Customers</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-center">Current progress towards our global target. Join us to contribute!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leaderboard Section -->
+        <section id="leaderboard" class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Top Performers Leaderboard</h2>
+                
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden" data-aos="fade-up">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer ID</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Points</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Recruits</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200" id="leaderboardBody">
+                                <!-- Rows will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rewards Section -->
+        <section id="rewards" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Achievements & Rewards</h2>
+                
+                <h3 class="text-xl font-semibold text-gray-700 mb-6" data-aos="fade-up">Top 5 Rewards</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
+                    <!-- Reward 1 -->
+                    <div class="reward-card bg-gradient-to-br from-yellow-50 to-amber-50 p-6 rounded-xl shadow-sm border border-gray-100 transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex justify-center mb-4">
+                            <div class="p-4 rounded-full bg-amber-100">
+                                <i data-feather="award" class="text-amber-600 w-8 h-8"></i>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-bold text-center text-gray-800 mb-2">Top 1</h4>
+                        <p class="text-lg font-semibold text-center text-gray-700 mb-2">Luxury Car</p>
+                        <p class="text-gray-600 text-center text-sm">Drive home in style with our premium vehicle reward</p>
+                    </div>
+                    
+                    <!-- Reward 2 -->
+                    <div class="reward-card bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl shadow-sm border border-gray-100 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex justify-center mb-4">
+                            <div class="p-4 rounded-full bg-blue-100">
+                                <i data-feather="bike" class="text-blue-600 w-8 h-8"></i>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-bold text-center text-gray-800 mb-2">Top 2</h4>
+                        <p class="text-lg font-semibold text-center text-gray-700 mb-2">Royal Enfield</p>
+                        <p class="text-gray-600 text-center text-sm">High-performance bike for your active lifestyle</p>
+                    </div>
+                    
+                    <!-- Reward 3 -->
+                    <div class="reward-card bg-gradient-to-br from-yellow-50 to-amber-50 p-6 rounded-xl shadow-sm border border-gray-100 transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex justify-center mb-4">
+                            <div class="p-4 rounded-full bg-yellow-100">
+                                <i data-feather="trending-up" class="text-yellow-600 w-8 h-8"></i>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-bold text-center text-gray-800 mb-2">Top 3</h4>
+                        <p class="text-lg font-semibold text-center text-gray-700 mb-2">Pulser bike</p>
+                        <p class="text-gray-600 text-center text-sm">High-performance bike for your active lifestyle</p>
+                    </div>
+                    
+                    <!-- Reward 4 -->
+                    <div class="reward-card bg-gradient-to-br from-gray-50 to-blue-50 p-6 rounded-xl shadow-sm border border-gray-100 transition duration-300" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flex justify-center mb-4">
+                            <div class="p-4 rounded-full bg-gray-100">
+                                <i data-feather="smartphone" class="text-gray-600 w-8 h-8"></i>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-bold text-center text-gray-800 mb-2">Top 4</h4>
+                        <p class="text-lg font-semibold text-center text-gray-700 mb-2">Tvs bike</p>
+                        <p class="text-gray-600 text-center text-sm">High-performance bike for your active lifestyle</p>
+                    </div>
+                    
+                    <!-- Reward 5 -->
+                    <div class="reward-card bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl shadow-sm border border-gray-100 transition duration-300" data-aos="fade-up" data-aos-delay="500">
+                        <div class="flex justify-center mb-4">
+                            <div class="p-4 rounded-full bg-green-100">
+                                <i data-feather="globe" class="text-green-600 w-8 h-8"></i>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-bold text-center text-gray-800 mb-2">Top 5</h4>
+                        <p class="text-lg font-semibold text-center text-gray-700 mb-2">iphone</p>
+                        <p class="text-gray-600 text-center text-sm">rang this category</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold text-gray-700 mb-6" data-aos="fade-up">Monthly Passive Rewards</h3>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+                    <!-- Monthly Reward 1 -->
+                    <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+                        <h4 class="text-xl font-bold text-center text-gray-800 mb-2">Top 1</h4>
+                        <p class="text-2xl font-bold text-center text-green-600">₹50,000</p>
+                        <p class="text-gray-600 text-center text-sm mt-2">Monthly passive income</p>
+                    </div>
+                    
+                    <!-- Monthly Reward 2 -->
+                    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+                        <h4 class="text-xl font-bold text-center text-gray-800 mb-2">Top 2</h4>
+                        <p class="text-2xl font-bold text-center text-blue-600">₹40,000</p>
+                        <p class="text-gray-600 text-center text-sm mt-2">Monthly passive income</p>
+                    </div>
+                    
+                    <!-- Monthly Reward 3 -->
+                    <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-xl shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="300">
+                        <h4 class="text-xl font-bold text-center text-gray-800 mb-2">Top 3</h4>
+                        <p class="text-2xl font-bold text-center text-purple-600">₹30,000</p>
+                        <p class="text-gray-600 text-center text-sm mt-2">Monthly passive income</p>
+                    </div>
+                    
+                    <!-- Monthly Reward 4 -->
+                    <div class="bg-gradient-to-br from-yellow-50 to-amber-50 p-6 rounded-xl shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="400">
+                        <h4 class="text-xl font-bold text-center text-gray-800 mb-2">Top 4</h4>
+                        <p class="text-2xl font-bold text-center text-amber-600">₹20,000</p>
+                        <p class="text-gray-600 text-center text-sm mt-2">Monthly passive income</p>
+                    </div>
+                    
+                    <!-- Monthly Reward 5 -->
+                    <div class="bg-gradient-to-br from-gray-50 to-blue-50 p-6 rounded-xl shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="500">
+                        <h4 class="text-xl font-bold text-center text-gray-800 mb-2">Top 5</h4>
+                        <p class="text-2xl font-bold text-center text-gray-600">₹10,000</p>
+                        <p class="text-gray-600 text-center text-sm mt-2">Monthly passive income</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Our Products</h2>
+                
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <button id="viewProductsBtn" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg text-lg font-medium transition transform hover:scale-105">
+                        View Products
+                    </button>
+                </div>
+                
+                <!-- Products Modal (hidden by default) -->
+                <div id="productsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+                    <div class="bg-white rounded-xl shadow-xl max-w-4xl w-full max-h-screen overflow-y-auto">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-2xl font-bold text-gray-800">Our Product Categories</h3>
+                                <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700">
+                                    <i data-feather="x"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <!-- Product 1 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                                    <img src="image/organic-supplements.jpg" alt="Product 1" class="w-full h-40 object-cover rounded-lg mb-4">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Organic Supplements</h4>
+                                    <p class="text-gray-600 text-sm">Premium quality organic health supplements for daily wellness.</p>
+                                </div>
+                                
+                                <!-- Product 2 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                                    <img src="image/skincare.jpg" alt="Product 2" class="w-full h-40 object-cover rounded-lg mb-4">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Skincare Range</h4>
+                                    <p class="text-gray-600 text-sm">Natural skincare products for radiant and healthy skin.</p>
+                                </div>
+                                
+                                <!-- Product 3 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                                    <img src="image/bodycare.jpg" alt="Product 3" class="w-full h-40 object-cover rounded-lg mb-4">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Body Care Products</h4>
+                                    <p class="text-gray-600 text-sm">Eco-friendly Body cleaning and care products.</p>
+                                </div>
+                                
+                                <!-- Product 4 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                                    <img src="image/nutrition.jpg" alt="Product 4" class="w-full h-40 object-cover rounded-lg mb-4">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Nutritional Foods</h4>
+                                    <p class="text-gray-600 text-sm">Healthy and delicious nutritional food options.</p>
+                                </div>
+                                
+                                <!-- Product 5 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                                    <img src="image/sampoo.jpg" alt="Product 5" class="w-full h-40 object-cover rounded-lg mb-4">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Hair Sampoo</h4>
+                                    <p class="text-gray-600 text-sm">“Nourish your roots, shine your strands – 100% natural care.”</p>
+                                </div>
+                                
+                                <!-- Product 6 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                                    <img src="image/oil.jpg" alt="Product 6" class="w-full h-40 object-cover rounded-lg mb-4">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Hair Oil</h4>
+                                    <p class="text-gray-600 text-sm">“Strengthen, nourish, and grow – nature’s touch for your hair.”</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Privacy Policy Page -->
+    <div id="privacy-page" class="page privacy-root">
+        <main class="privacy-wrap">
+            <header>
+                <div class="mark" style="width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#0ea45b,#1db978);display:grid;place-items:center;color:#fff;font-weight:800;font-family:Poppins">GG</div>
+                <div>
+                    <h1 style="margin:0;font-family:Poppins;font-size:22px">Privacy Policy — GREEN GROW PRIVATE LIMITED</h1>
+                    <div class="meta" style="color:#5b6b59;font-size:13px;margin-top:6px">Effective date: <strong id="effectiveDate">[DD/MM/YYYY]</strong> · Last updated: <span id="updatedDate">[DD/MM/YYYY]</span></div>
+                </div>
+            </header>
+
+            <section class="privacy-card">
+                <div class="section-title">
+                    <h2>Overview</h2>
+                </div>
+                <p class="small" style="font-size:13px;color:#5b6b59">GREEN GROW PRIVATE LIMITED ("Company", "we", "us", "our") values your privacy. This Privacy Policy explains what information we collect, why we collect it, how we use it, and the choices you have regarding your information when you use our website, mobile apps, and services.</p>
+
+                <div class="note" style="background:linear-gradient(90deg, rgba(14,164,91,0.06), rgba(29,185,120,0.03));padding:12px;border-radius:10px;color:#5b6b59;margin:12px 0">
+                    <strong>Quick note:</strong> This is a general privacy policy tailored for our referral & rewards platform. It is not legal advice — consult a lawyer for jurisdiction-specific compliance (especially for KYC, Aadhaar rules, or payment regulations).
+                </div>
+
+                <nav style="margin-top:10px">
+                    <div class="toc" style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">
+                        <a href="#what" style="font-size:13px;color:#0ea45b;text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(14,164,91,0.06)">What we collect</a>
+                        <a href="#use" style="font-size:13px;color:#0ea45b;text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(14,164,91,0.06)">How we use</a>
+                        <a href="#share" style="font-size:13px;color:#0ea45b;text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(14,164,91,0.06)">Sharing</a>
+                        <a href="#security" style="font-size:13px;color:#0ea45b;text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(14,164,91,0.06)">Security</a>
+                        <a href="#rights" style="font-size:13px;color:#0ea45b;text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(14,164,91,0.06)">Your rights</a>
+                        <a href="#cookies" style="font-size:13px;color:#0ea45b;text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(14,164,91,0.06)">Cookies</a>
+                        <a href="#children" style="font-size:13px;color:#0ea45b;text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(14,164,91,0.06)">Children</a>
+                        <a href="#contact" style="font-size:13px;color:#0ea45b;text-decoration:none;padding:6px 10px;border-radius:8px;background:rgba(14,164,91,0.06)">Contact</a>
+                    </div>
+                </nav>
+
+                <h2 id="what">1. Information we collect</h2>
+                <p>We collect information you provide directly and information we collect automatically when you use our services.</p>
+                <ul>
+                    <li><strong>Account & contact data:</strong> full name, email, phone number, address (city, country, ZIP).</li>
+                    <li><strong>Authentication:</strong> password hash (we never store plain passwords), OTP verification tokens.</li>
+                    <li><strong>Referral data:</strong> referral codes, sponsor ID, referral history.</li>
+                    <li><strong>Payment & transaction data:</strong> transaction records, receipts (payment provider managed — we store transaction meta).</li>
+                    <li><strong>Bank details:</strong> account holder, account number, IFSC, UPI — encrypted and used only for payouts.</li>
+                    <li><strong>Activity & usage:</strong> IP address, device info, pages visited, actions taken, logs.</li>
+                    <li><strong>Optional KYC documents:</strong> passport or driver's license if user voluntarily uploads them (for verification). These are stored securely and can be deleted on request subject to compliance).</li>
+                </ul>
+
+                <h2 id="use">2. How we use your information</h2>
+                <p>We use your data to deliver the service, run the business, comply with legal requirements and to improve the platform:</p>
+                <ul>
+                    <li>Create and manage user accounts and profiles.</li>
+                    <li>Process sign-up payments and split amounts according to our pool/commission rules.</li>
+                    <li>Track referrals, calculate commissions and points, and update leaderboards.</li>
+                    <li>Process payouts to your bank account when eligible.</li>
+                    <li>Send important communications: account alerts, OTPs, payment confirmations, notifications.</li>
+                    <li>Detect and prevent fraud, abuse or illegal activity.</li>
+                    <li>Conduct analytics and improve the product.</li>
+                </ul>
+
+                <h2 id="share">3. When we share information</h2>
+                <p>We never sell your personal information. We may share data in limited circumstances:</p>
+                <ul>
+                    <li>With trusted third parties needed to operate the service — payment processors, SMS/email providers, analytics providers.</li>
+                    <li>With payment processors to complete transactions (they receive only the data necessary to process payments).</li>
+                    <li>With legal or regulatory authorities when required by law or to protect our rights.</li>
+                    <li>In connection with a merger, acquisition, or sale of assets (with notice to users where required).</li>
+                </ul>
+
+                <h2 id="security">4. Data security & storage</h2>
+                <p>We use industry-standard technical and organizational measures to protect your data, including encryption in transit (HTTPS) and encryption at rest for sensitive fields. Access to user data is restricted and logged.</p>
+                <p>However, no system is 100% secure. If we detect a breach, we will notify affected users and authorities as required by law.</p>
+
+                <h2 id="rights">5. Your rights & choices</h2>
+                <p>You have rights regarding your personal data (subject to local laws):</p>
+                <ul>
+                    <li><strong>Access:</strong> request a copy of your data.</li>
+                    <li><strong>Correction:</strong> ask us to correct inaccurate data.</li>
+                    <li><strong>Deletion:</strong> request deletion of your account and data (some records may be retained for legal/compliance reasons).</li>
+                    <li><strong>Opt-out:</strong> opt out of promotional emails; transactional messages (OTP, receipts) cannot be opted out.</li>
+                </ul>
+                <p>To exercise these rights, contact us at the details below. We may ask for proof of identity before fulfilling requests.</p>
+
+                <h2 id="cookies">6. Cookies & tracking</h2>
+                <p>We use cookies and similar technologies to operate the site, improve performance, and provide analytics. You can manage cookie preferences via your browser settings; disabling cookies may affect functionality.</p>
+
+                <h2 id="children">7. Children</h2>
+                <p>Our services are intended for users aged 18 and above. We do not knowingly collect personal information from children under 18. If a parent believes we have collected such data, contact us immediately to remove it.</p>
+
+                <h2 id="retention">8. Data retention</h2>
+                <p>We retain personal data as long as necessary for the purposes described (account maintenance, legal obligations, dispute resolution). When no longer needed, data is securely deleted or anonymized.</p>
+
+                <h2 id="international">9. International transfers</h2>
+                <p>Our systems may store and process data in different countries. By using our service, you consent to cross-border transfer, storage and processing of your information in jurisdictions where we operate.</p>
+
+                <h2 id="changes">10. Changes to this policy</h2>
+                <p>We may update this Privacy Policy. If we make material changes, we will notify users (via email or site notice) and update the "Effective Date" above.</p>
+
+                <h2 id="contact">11. Contact us</h2>
+                <p>If you have questions, requests or concerns about your privacy, contact our Data Protection Team:</p>
+                <div class="contact" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:14px">
+                    <div><strong>Email:</strong> <a href="mailto:support@greengrow.com" style="color:#0ea45b;text-decoration:none;font-weight:600">thegreengrowcare@gmail.com</a></div>
+                    <div><strong>Phone:</strong> <a href="tel:+911234567890" style="color:#0ea45b;text-decoration:none;font-weight:600">+91-8318873808</a></div>
+                    <div><strong>Address:</strong> <span class="small" style="font-size:13px;color:#5b6b59">[India , Chhattishgarh , Durg]</span></div>
+                </div>
+
+                <footer style="margin-top:18px">
+                    <p class="small" style="font-size:13px;color:#5b6b59">GREEN GROW PRIVATE LIMITED • © <span id="year"></span>. All rights reserved.</p>
+                </footer>
+            </section>
+        </main>
+    </div>
+
+    <!-- Terms & Conditions Page -->
+    <div id="terms-page" class="page">
+        <header class="terms-header">
+            <h1>Terms & Conditions</h1>
+            <p>GREEN GROW PRIVATE LIMITED</p>
+        </header>
+
+        <main class="terms-main">
+            <h2 style="color:#0c7c3a">1. Acceptance of Terms</h2>
+            <p>By registering with GREEN GROW PRIVATE LIMITED, you agree to abide by these Terms & Conditions. Please read them carefully before using our services.</p>
+
+            <h2 style="color:#0c7c3a">2. Non-Refundable Policy</h2>
+            <p>All payments made for joining fees, products, or services are strictly <strong>non-refundable</strong>. Once payment is completed, it cannot be reversed, canceled, or refunded under any circumstances.</p>
+
+            <h2 style="color:#0c7c3a">3. No Return Policy</h2>
+            <p>Products or services provided by GREEN GROW PRIVATE LIMITED are not eligible for returns or exchanges. All purchases are considered final.</p>
+
+            <h2 style="color:#0c7c3a">4. User Responsibilities</h2>
+            <p>Users must provide accurate personal details during registration. Misuse of the platform, fraudulent activities, or violation of rules may result in suspension or termination of your account.</p>
+
+            <h2 style="color:#0c7c3a">5. Earnings Disclaimer</h2>
+            <p>Income or rewards depend on user efforts and participation. The company does not guarantee fixed earnings, rewards, or profits.</p>
+
+            <h2 style="color:#0c7c3a">6. Compliance with Law</h2>
+            <p>All members must comply with local laws and regulations. Any unlawful activity will lead to account termination and legal action if necessary.</p>
+
+            <h2 style="color:#0c7c3a">7. Changes to Terms</h2>
+            <p>GREEN GROW PRIVATE LIMITED reserves the right to modify or update these Terms & Conditions at any time. Updates will be effective once published on the website.</p>
+
+            <h2 style="color:#0c7c3a">8. Contact Information</h2>
+            <p>If you have questions about these Terms, contact us at:</p>
+            <p>Email: greengrowcare@gmail.com<br>
+               Phone: +91-8318873808<br>
+               Address: [India , Chhattishgarh , Durg]</p>
+        </main>
+
+        <footer style="text-align:center;padding:20px;background:#222;color:#fff;margin-top:30px">
+            <p>&copy; <span id="termsYear"></span> GREEN GROW PRIVATE LIMITED. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">GREEN GROW</h3>
+                    <p class="text-gray-400">Growing Together, Globally. Join our community for sustainable growth and success.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#global-pool" class="text-gray-400 hover:text-white transition" onclick="showPage('home')">Global Pool</a></li>
+                        <li><a href="#leaderboard" class="text-gray-400 hover:text-white transition" onclick="showPage('home')">Leaderboard</a></li>
+                        <li><a href="#rewards" class="text-gray-400 hover:text-white transition" onclick="showPage('home')">Rewards</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="showPage('privacy')">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition" onclick="showPage('terms')">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400"><i data-feather="mail" class="mr-2 w-4 h-4"></i> thegreengrowcare@gmail.com</li>
+                        <li class="flex items-center text-gray-400"><i data-feather="phone" class="mr-2 w-4 h-4"></i>8318873808</li>
+                        <li class="flex items-center text-gray-400"><i data-feather="map-pin" class="mr-2 w-4 h-4"></i> India , Chhattishgarh , Durg , </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 GREEN GROW. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation Function
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageName + '-page').classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Initialize feather icons
+        feather.replace();
+
+        // Counter animations
+        function animateCounter(elementId, target, duration = 2000) {
+            const element = document.getElementById(elementId);
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+
+        // Animate global pool and total points counters
+        setTimeout(() => {
+            animateCounter('globalPoolCounter', 32500);
+            animateCounter('totalPointsCounter', 90);
+        }, 500);
+
+        // Progress chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            const progressPercentage = document.getElementById('progressPercentage');
+            const progressText = document.getElementById('progressText');
+            
+            const targetPoints = 2000;
+            const currentPoints = 13;
+            const currentProgress = (currentPoints / targetPoints) * 100;
+            
+            const progressChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [currentProgress, 100 - currentProgress],
+                        backgroundColor: ['#0A8754', '#E5E7EB'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    cutout: '80%',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false
+                        }
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+            
+            // Animate percentage counter aur points display
+            let currentPercent = 0;
+            let currentDisplayPoints = 0;
+            const pointsIncrement = currentPoints / 50;
+            
+            const interval = setInterval(() => {
+                currentPercent += 2;
+                currentDisplayPoints += pointsIncrement;
+                
+                if (currentPercent >= Math.floor(currentProgress)) {
+                    currentPercent = Math.floor(currentProgress);
+                    currentDisplayPoints = currentPoints;
+                    clearInterval(interval);
+                }
+                
+                progressPercentage.textContent = currentPercent + '%';
+                progressText.textContent = Math.floor(currentDisplayPoints).toLocaleString() + '/' + targetPoints.toLocaleString() + ' Points';
+            }, 40);
+        });
+
+        // Leaderboard data
+        const leaderboardData = [
+  { "rank": 1, "name": "Ashwant", "customerId": "GG5013", "points": "50", "recruits": 5 },
+  { "rank": 2, "name": "sonbati", "customerId": "GG5018", "points": "30", "recruits": 3 },
+  { "rank": 3, "name": "Abdhesh Kushawaha", "customerId": "GG5010", "points": "10", "recruits": 1 },          
+  { "rank": 4, "name": "Sushmita Sahu", "customerId": "GG5011", "points": "0000", "recruits": 0 },
+  { "rank": 5, "name": "Abdul Aziz Mondal", "customerId": "GG5012", "points": "0000", "recruits": 0 },
+  { "rank": 6, "name": "Lalchand Sahu", "customerId": "GG5014", "points": "0000", "recruits": 0 },
+  { "rank": 7, "name": "Rizwan Khan", "customerId": "GG5015", "points": "0000", "recruits": 0 },
+  { "rank": 8, "name": "Gulshan kumar sahu", "customerId": "GG5016", "points": "0000", "recruits": 0 },
+  { "rank": 9, "name": "Bina Dewangan", "customerId": "GG5017", "points": "0000", "recruits": 0 },
+  { "rank": 10, "name": "prema", "customerId": "GG5019", "points": "0000", "recruits": 0 },
+  { "rank": 11, "name": "Mukesh Pal", "customerId": "GG5020", "points": "0000", "recruits": 0 },
+  { "rank": 12, "name": "Sumesh Sahu", "customerId": "GG5021", "points": "0000", "recruits": 0 },
+  { "rank": 13, "name": "Duleshwar kumar rajak", "customerId": "GG5022", "points": "0000", "recruits": 0 },
+  { "rank": 14, "name": "xxxxxxxx", "customerId": "GG5023", "points": "0000", "recruits": 0 },
+  { "rank": 15, "name": "xxxxxxxx", "customerId": "GG5024", "points": "0000", "recruits": 0 },
+  { "rank": 16, "name": "xxxxxxxx", "customerId": "GG5025", "points": "0000", "recruits": 0 },
+  { "rank": 17, "name": "xxxxxxxx", "customerId": "GG5026", "points": "0000", "recruits": 0 },
+  { "rank": 18, "name": "xxxxxxxx", "customerId": "GG5027", "points": "0000", "recruits": 0 },
+  { "rank": 19, "name": "xxxxxxxx", "customerId": "GG5028", "points": "0000", "recruits": 0 },
+  { "rank": 20, "name": "xxxxxxxx", "customerId": "GG5029", "points": "0000", "recruits": 0 },
+  { "rank": 21, "name": "xxxxxxxx", "customerId": "GG5030", "points": "0000", "recruits": 0 },
+  { "rank": 22, "name": "xxxxxxxx", "customerId": "GG5031", "points": "0000", "recruits": 0 },
+  { "rank": 23, "name": "xxxxxxxx", "customerId": "GG5032", "points": "0000", "recruits": 0 },
+  { "rank": 24, "name": "xxxxxxxx", "customerId": "GG5033", "points": "0000", "recruits": 0 },
+  { "rank": 25, "name": "xxxxxxxx", "customerId": "GG5034", "points": "0000", "recruits": 0 },
+  { "rank": 26, "name": "xxxxxxxx", "customerId": "GG5035", "points": "0000", "recruits": 0 },
+  { "rank": 27, "name": "xxxxxxxx", "customerId": "GG5036", "points": "0000", "recruits": 0 },
+  { "rank": 28, "name": "xxxxxxxx", "customerId": "GG5037", "points": "0000", "recruits": 0 },
+  { "rank": 29, "name": "xxxxxxxx", "customerId": "GG5038", "points": "0000", "recruits": 0 },
+  { "rank": 30, "name": "xxxxxxxx", "customerId": "GG5039", "points": "0000", "recruits": 0 },
+  { "rank": 31, "name": "xxxxxxxx", "customerId": "GG5040", "points": "0000", "recruits": 0 },
+  { "rank": 32, "name": "xxxxxxxx", "customerId": "GG5041", "points": "0000", "recruits": 0 },
+  { "rank": 33, "name": "xxxxxxxx", "customerId": "GG5042", "points": "0000", "recruits": 0 },
+  { "rank": 34, "name": "xxxxxxxx", "customerId": "GG5043", "points": "0000", "recruits": 0 },
+  { "rank": 35, "name": "xxxxxxxx", "customerId": "GG5044", "points": "0000", "recruits": 0 },
+  { "rank": 36, "name": "xxxxxxxx", "customerId": "GG5045", "points": "0000", "recruits": 0 },
+  { "rank": 37, "name": "xxxxxxxx", "customerId": "GG5046", "points": "0000", "recruits": 0 },
+  { "rank": 38, "name": "xxxxxxxx", "customerId": "GG5047", "points": "0000", "recruits": 0 },
+  { "rank": 39, "name": "xxxxxxxx", "customerId": "GG5048", "points": "0000", "recruits": 0 },
+  { "rank": 40, "name": "xxxxxxxx", "customerId": "GG5049", "points": "0000", "recruits": 0 },
+  { "rank": 41, "name": "xxxxxxxx", "customerId": "GG5050", "points": "0000", "recruits": 0 },
+  { "rank": 42, "name": "xxxxxxxx", "customerId": "GG5051", "points": "0000", "recruits": 0 },
+  { "rank": 43, "name": "xxxxxxxx", "customerId": "GG5052", "points": "0000", "recruits": 0 },
+  { "rank": 44, "name": "xxxxxxxx", "customerId": "GG5053", "points": "0000", "recruits": 0 },
+  { "rank": 45, "name": "xxxxxxxx", "customerId": "GG5054", "points": "0000", "recruits": 0 },
+  { "rank": 46, "name": "xxxxxxxx", "customerId": "GG5055", "points": "0000", "recruits": 0 },
+  { "rank": 47, "name": "xxxxxxxx", "customerId": "GG5056", "points": "0000", "recruits": 0 },
+  { "rank": 48, "name": "xxxxxxxx", "customerId": "GG5057", "points": "0000", "recruits": 0 },
+  { "rank": 49, "name": "xxxxxxxx", "customerId": "GG5058", "points": "0000", "recruits": 0 },
+  { "rank": 50, "name": "xxxxxxxx", "customerId": "GG5059", "points": "0000", "recruits": 0 },
+            // ... (rest of your leaderboard data)
+        ];
+
+        // Populate leaderboard
+        const leaderboardBody = document.getElementById('leaderboardBody');
+        leaderboardData.forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.className = index % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${item.rank}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.name}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.customerId}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.points}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.recruits}</td>
+            `;
+            leaderboardBody.appendChild(row);
+        });
+
+        // Products modal functionality
+        const viewProductsBtn = document.getElementById('viewProductsBtn');
+        const productsModal = document.getElementById('productsModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        viewProductsBtn.addEventListener('click', () => {
+            productsModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            productsModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        productsModal.addEventListener('click', (e) => {
+            if (e.target === productsModal) {
+                productsModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Privacy Policy date auto-fill
+        (function(){
+            const d = new Date();
+            const dd = String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + d.getFullYear();
+            document.getElementById('effectiveDate').textContent = dd;
+            document.getElementById('updatedDate').textContent = dd;
+            document.getElementById('year').textContent = d.getFullYear();
+        })();
+
+        // Terms & Conditions year
+        document.getElementById('termsYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
